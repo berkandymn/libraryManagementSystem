@@ -47,12 +47,16 @@ class library:
                     kitap2.write(kitap)
 
 
-#%%hs
+lib=library()
 
-nesne=library()
-nesne.listBooks()
-
-
-#%%
-nesne=library()
-nesne.removeBook()
+while True:
+    secenek=input("***MENU***\n1 - Kitapları Listele\n2 - Kitap Ekle\n3 - Kitabı Kaldır\n4 - Çıkış\n")
+    match secenek:
+        case "1":
+            lib.listBooks()
+        case "2":
+            lib.addBook()
+        case "3":
+            lib.removeBook()
+        case "4":
+            break
