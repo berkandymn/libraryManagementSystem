@@ -5,7 +5,7 @@ class library:
         self.kayıtlar.close()
         
     def listBooks(self):
-        with open("books.txt","r") as kitap:
+        with open("books.txt","r",encoding="utf-8") as kitap:
             booklist=[]
             for book in kitap.read().splitlines():
                 booklist=book.split(",")
@@ -13,21 +13,21 @@ class library:
                 yazarAdı=booklist[1]
                 yayınYılı=booklist[2]
                 syfSayisi=booklist[3]
-                print(f"Kitabın Adı: {kitapAdı} - Yazarı: {yazarAdı} - Yayın Yılı: {yayınYılı} - Sayfa Sayısı: {syfSayisi}")
+                print(f"Kitap: {kitapAdı} - {yazarAdı} - {yayınYılı} - {syfSayisi}")
         
     def addBook(self):
         with open("books.txt","a+") as kitap:
-            kitapAdı=input("Kitabın Adı: ")
-            yazarAdı=input("Yazar Adı: ")
-            yayınYılı=input("Yayın Yılı: ")
-            syfSayisi=input("Sayfa Sayısı: ")
+            kitapAdı=input("Kitabın Adını Giriniz: ")
+            yazarAdı=input("Yazar Adını Giriniz: ")
+            yayınYılı=input("Yayın Yılını Giriniz: ")
+            syfSayisi=input("Sayfa Sayısını Giriniz: ")
             kitapBilgisi=(f"{kitapAdı},{yazarAdı},{yayınYılı},{syfSayisi}")
-            kitap.write(str(kitapBilgisi)+"\n")
+            kitap.write("\n"+str(kitapBilgisi)+"\n")
 
     def removeBook(self):
         books=library()
         books.listBooks()
-        with open("books.txt","r+") as kitap:
+        with open("books.txt","r+",encoding="utf-8") as kitap:
             bookName=input("Silinecek Kitabın ismi: ")
             booklist=[]
             kitaplar=[]
@@ -42,15 +42,23 @@ class library:
                 else:
                     kitaplar.append(book)
         
-            with open("books.txt","w") as kitap2:
+            with open("books.txt","w",encoding="utf-8") as kitap2:
                 for kitap in kitaplar:
                     kitap2.write(kitap)
 
-
+"""def menu(islem):
+    if islem==1:
+        lib.listBooks()
+    elif islem==2:
+        lib.addBook()
+    elif islem==3
+        lib.removeBook()
+    elif islem==4:
+        break"""
 lib=library()
 
 while True:
-    secenek=input("***MENU***\n1 - Kitapları Listele\n2 - Kitap Ekle\n3 - Kitabı Kaldır\n4 - Çıkış\n")
+    secenek=input("\n***MENU***\n1 - Kitapları Listele\n2 - Kitap Ekle\n3 - Kitabı Kaldır\n4 - Çıkış\n")
     match secenek:
         case "1":
             lib.listBooks()
