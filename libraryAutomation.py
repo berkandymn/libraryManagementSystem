@@ -22,7 +22,7 @@ class library:
             yayınYılı=input("Yayın Yılını Giriniz: ")
             syfSayisi=input("Sayfa Sayısını Giriniz: ")
             kitapBilgisi=(f"{kitapAdı},{yazarAdı},{yayınYılı},{syfSayisi}")
-            kitap.write("\n"+str(kitapBilgisi)+"\n")
+            kitap.write(str(kitapBilgisi)+"\n")
 
     def removeBook(self):
         books=library()
