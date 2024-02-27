@@ -13,7 +13,18 @@ class library:
                 yazarAdi=booklist[1]
                 yayinYili=booklist[2]
                 syfSayisi=booklist[3]
+                print(f"Kitap: {kitapAdi} - {yazarAdi}")
+    def listExtendedBooks(self):
+        with open("books.txt","r",encoding="utf-8") as kitap:
+            booklist=[]
+            for book in kitap.read().splitlines():
+                booklist=book.split(",")
+                kitapAdi=booklist[0]
+                yazarAdi=booklist[1]
+                yayinYili=booklist[2]
+                syfSayisi=booklist[3]
                 print(f"Kitap: {kitapAdi} - {yazarAdi} - {yayinYili} - {syfSayisi}")
+        
         
     def addBook(self):
         with open("books.txt","a+",encoding="utf-8") as kitap:
@@ -55,12 +66,16 @@ class library:
 lib=library()
 
 while True:
-    secenek=input("\n***MENU***\n1 - Kitapları Listele\n2 - Kitap Ekle\n3 - Kitabı Kaldır\n4 - Çıkış\n")
+    secenek=input("\n***MENU***\n1 - Kitapları  Listele \n2 - Kitapları Detaylı Listele \n3 - Kitap Ekle\n4 - Kitabı Kaldır\n5 - Çıkış\n")
     if secenek=="1":
         lib.listBooks()
     elif secenek=="2":
-        lib.addBook()
+        lib.listExtendedBooks()
     elif secenek=="3":
-        lib.removeBook()
+        lib.addBook()
     elif secenek=="4":
+        lib.removeBook()
+    elif secenek=="5":
         break
+
+        
