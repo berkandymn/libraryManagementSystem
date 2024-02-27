@@ -1,9 +1,13 @@
 class library:
+    #sınıf kullanıldığında çalışır ve kayıttan okuma işlemini yapar
     def __init__(self,kayitlar="books.txt"):
         self.kayitlar=open(kayitlar,"a+",encoding="utf-8")
+    
+    #sınıfın kullanımı bitince çalışır ve okuma yapılan dosyayı kapatır
     def __del__(self):
         self.kayitlar.close()
         
+    #kitabın sadece adını ve yazar adını yazdırır
     def listBooks(self):
         with open("books.txt","r",encoding="utf-8") as kitap:
             booklist=[]
@@ -14,6 +18,8 @@ class library:
                 yayinYili=booklist[2]
                 syfSayisi=booklist[3]
                 print(f"Kitap: {kitapAdi} - {yazarAdi}")
+    
+    #kitabın tüm bilgilerini yazdırır
     def listExtendedBooks(self):
         with open("books.txt","r",encoding="utf-8") as kitap:
             booklist=[]
@@ -25,7 +31,7 @@ class library:
                 syfSayisi=booklist[3]
                 print(f"Kitap: {kitapAdi} - {yazarAdi} - {yayinYili} - {syfSayisi}")
         
-        
+    #sırası ile kullanıcıdan kitap bilgilerini alarak yeni kitap eklenir
     def addBook(self):
         with open("books.txt","a+",encoding="utf-8") as kitap:
             kitapAdi=input("Kitabın Adını Giriniz: ")
@@ -35,6 +41,7 @@ class library:
             kitapBilgisi=(f"{kitapAdi},{yazarAdi},{yayinYili},{syfSayisi}")
             kitap.write(str(kitapBilgisi)+"\n")
 
+    #kitap adını alarak o kitabın tüm bilgilerini siler
     def removeBook(self):
         silinecek=False
         books=library()
@@ -65,6 +72,7 @@ class library:
 
 lib=library()
 
+#biz çıkış seçeneğini seçene kadar sürekli tekrarlı bir döngü olarak çalışır. Tekrarlı kullanımı sağlar
 while True:
     secenek=input("\n***MENU***\n1 - Kitapları  Listele \n2 - Kitapları Detaylı Listele \n3 - Kitap Ekle\n4 - Kitabı Kaldır\n5 - Çıkış\n")
     if secenek=="1":
