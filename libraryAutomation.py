@@ -1,6 +1,7 @@
 class library:
     def __init__(self,kayitlar="books.txt"):
         self.kayitlar=open(kayitlar,"a+",encoding="utf-8")
+    def __del__(self):
         self.kayitlar.close()
         
     def listBooks(self):
